@@ -39,6 +39,25 @@ app.get('/echo', (req, res) => {
   });
 });
 
+app.get('/dice', (req, res) => {
+  const roll = req.query.roll || '1d6';
+  const match = roll.match(/^(\d+)d(\d+)$/i);
+  if (!match) {
+    return res.status(400).json({ error: 'Invalid format. Use NdM (e.g., 2d6)' });
+  }
+  const numDice = Math.min(parseInt(match[1]), 100);
+  const sides = Math.min(parseInt(match[2]), 1000);
+  const rolls = [];
+  for (let i = 0; i < numDice; i++) {
+    rolls.push(Math.floor(Math.random() * sides) + 1);
+  }
+  res.json({
+    roll: `${numDice}d${sides}`,
+    results: rolls,
+    total: rolls.reduce((a, b) => a + b, 0)
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
