@@ -92,6 +92,32 @@ app.get('/coinflip', (req, res) => {
   res.json({ result, timestamp: new Date().toISOString() });
 });
 
+app.get('/countdown', (req, res) => {
+  const now = new Date();
+  let target;
+  if (req.query.to) {
+    target = new Date(req.query.to);
+    if (isNaN(target.getTime())) {
+      return res.status(400).json({ error: 'Invalid date format. Use ISO 8601 (e.g., 2025-12-31T23:59:59)' });
+    }
+  } else {
+    target = new Date(now);
+    target.setHours(23, 59, 59, 999);
+  }
+  const diffMs = target - now;
+  const isPast = diffMs < 0;
+  const absDiff = Math.abs(diffMs);
+  const days = Math.floor(absDiff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((absDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((absDiff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((absDiff % (1000 * 60)) / 1000);
+  res.json({
+    target: target.toISOString(),
+    remaining: isPast ? 'past' : { days, hours, minutes, seconds },
+    message: isPast ? 'Target time has passed!' : `${days}d ${hours}h ${minutes}m ${seconds}s remaining`
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
