@@ -256,6 +256,40 @@ app.get('/fizzbuzz', (req, res) => {
   res.json({ n, sequence, stats });
 });
 
+const emojis = [
+  { emoji: '😀', name: 'grinning face', category: 'smileys' },
+  { emoji: '🎉', name: 'party popper', category: 'celebration' },
+  { emoji: '🚀', name: 'rocket', category: 'travel' },
+  { emoji: '💻', name: 'laptop', category: 'tech' },
+  { emoji: '🔥', name: 'fire', category: 'nature' },
+  { emoji: '⭐', name: 'star', category: 'nature' },
+  { emoji: '🎯', name: 'direct hit', category: 'activities' },
+  { emoji: '💡', name: 'light bulb', category: 'objects' },
+  { emoji: '🎸', name: 'guitar', category: 'music' },
+  { emoji: '🌈', name: 'rainbow', category: 'nature' },
+  { emoji: '🍕', name: 'pizza', category: 'food' },
+  { emoji: '🐱', name: 'cat face', category: 'animals' },
+  { emoji: '🦄', name: 'unicorn', category: 'animals' },
+  { emoji: '🎮', name: 'video game', category: 'activities' },
+  { emoji: '☕', name: 'hot beverage', category: 'food' },
+  { emoji: '🌍', name: 'globe', category: 'travel' },
+  { emoji: '🎨', name: 'artist palette', category: 'activities' },
+  { emoji: '🏆', name: 'trophy', category: 'activities' },
+  { emoji: '💎', name: 'gem stone', category: 'objects' },
+  { emoji: '🎁', name: 'wrapped gift', category: 'celebration' }
+];
+
+app.get('/emoji', (req, res) => {
+  const count = Math.min(Math.max(parseInt(req.query.count) || 1, 1), 10);
+  const shuffled = [...emojis].sort(() => Math.random() - 0.5);
+  const selected = shuffled.slice(0, count);
+  if (count === 1) {
+    res.json(selected[0]);
+  } else {
+    res.json({ emojis: selected, count });
+  }
+});
+
 app.get('/countdown', (req, res) => {
   const now = new Date();
   let target;
