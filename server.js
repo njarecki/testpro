@@ -92,6 +92,16 @@ app.get('/coinflip', (req, res) => {
   res.json({ result, timestamp: new Date().toISOString() });
 });
 
+app.get('/password', (req, res) => {
+  const length = Math.min(Math.max(parseInt(req.query.length) || 16, 4), 128);
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%^&*';
+  let password = '';
+  for (let i = 0; i < length; i++) {
+    password += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  res.json({ password, length });
+});
+
 app.get('/countdown', (req, res) => {
   const now = new Date();
   let target;
