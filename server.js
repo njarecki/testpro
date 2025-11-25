@@ -183,6 +183,28 @@ app.get('/roman', (req, res) => {
   res.json({ number: num, roman: result });
 });
 
+const loremWords = [
+  'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit',
+  'sed', 'do', 'eiusmod', 'tempor', 'incididunt', 'ut', 'labore', 'et', 'dolore',
+  'magna', 'aliqua', 'enim', 'ad', 'minim', 'veniam', 'quis', 'nostrud',
+  'exercitation', 'ullamco', 'laboris', 'nisi', 'aliquip', 'ex', 'ea', 'commodo',
+  'consequat', 'duis', 'aute', 'irure', 'in', 'reprehenderit', 'voluptate',
+  'velit', 'esse', 'cillum', 'fugiat', 'nulla', 'pariatur', 'excepteur', 'sint',
+  'occaecat', 'cupidatat', 'non', 'proident', 'sunt', 'culpa', 'qui', 'officia',
+  'deserunt', 'mollit', 'anim', 'id', 'est', 'laborum'
+];
+
+app.get('/lorem', (req, res) => {
+  const count = Math.min(Math.max(parseInt(req.query.words) || 50, 1), 500);
+  const words = [];
+  for (let i = 0; i < count; i++) {
+    words.push(loremWords[Math.floor(Math.random() * loremWords.length)]);
+  }
+  words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+  const text = words.join(' ') + '.';
+  res.json({ text, wordCount: count });
+});
+
 app.get('/countdown', (req, res) => {
   const now = new Date();
   let target;
