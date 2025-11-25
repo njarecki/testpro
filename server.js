@@ -146,6 +146,22 @@ app.get('/joke', (req, res) => {
   res.json(joke);
 });
 
+const morseCode = {
+  'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
+  'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
+  'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
+  'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+  'Y': '-.--', 'Z': '--..', '0': '-----', '1': '.----', '2': '..---',
+  '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...',
+  '8': '---..', '9': '----.', ' ': '/'
+};
+
+app.get('/morse', (req, res) => {
+  const text = (req.query.text || 'HELLO').toUpperCase().slice(0, 100);
+  const morse = text.split('').map(c => morseCode[c] || '').join(' ');
+  res.json({ text, morse });
+});
+
 app.get('/countdown', (req, res) => {
   const now = new Date();
   let target;

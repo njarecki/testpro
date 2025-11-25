@@ -13,14 +13,15 @@
 - `GET /uuid?count=1` - UUID v4 generator (1-10 UUIDs)
 - `GET /color` - Random hex color generator (hex, rgb, css formats)
 - `GET /joke` - Random programming joke (setup + punchline)
+- `GET /morse?text=HELLO` - Text to morse code converter (max 100 chars)
 
 ## To test
 ```bash
 npm start
-# Visit http://localhost:3000/joke
+# Visit http://localhost:3000/morse?text=SOS
 ```
 
 ## Ideas for next iteration
 - `/lorem` - Lorem ipsum text generator
 - `/timestamp` - Unix timestamp converter
-- `/morse` - Text to morse code converter
+- `/roman` - Number to roman numeral converter
