@@ -11,15 +11,15 @@
 - `GET /password?length=16` - Random password generator (4-128 chars)
 - `GET /countdown?to=2025-12-31` - Countdown timer (defaults to end of day)
 - `GET /uuid?count=1` - UUID v4 generator (1-10 UUIDs)
+- `GET /color` - Random hex color generator (hex, rgb, css formats)
 
 ## To test
 ```bash
 npm start
-# Visit http://localhost:3000/uuid
-# Or: http://localhost:3000/uuid?count=5
+# Visit http://localhost:3000/color
 ```
 
 ## Ideas for next iteration
-- `/color` - Random hex color generator
 - `/lorem` - Lorem ipsum text generator
 - `/joke` - Random programming joke
+- `/timestamp` - Unix timestamp converter
