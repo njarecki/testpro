@@ -102,6 +102,20 @@ app.get('/password', (req, res) => {
   res.json({ password, length });
 });
 
+app.get('/uuid', (req, res) => {
+  const count = Math.min(Math.max(parseInt(req.query.count) || 1, 1), 10);
+  const uuids = [];
+  for (let i = 0; i < count; i++) {
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+    uuids.push(uuid);
+  }
+  res.json(count === 1 ? { uuid: uuids[0] } : { uuids, count });
+});
+
 app.get('/countdown', (req, res) => {
   const now = new Date();
   let target;
