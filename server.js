@@ -39,6 +39,35 @@ app.get('/echo', (req, res) => {
   });
 });
 
+const magic8BallAnswers = [
+  "It is certain.",
+  "Reply hazy, try again.",
+  "Don't count on it.",
+  "It is decidedly so.",
+  "Ask again later.",
+  "My reply is no.",
+  "Without a doubt.",
+  "Better not tell you now.",
+  "My sources say no.",
+  "Yes definitely.",
+  "Cannot predict now.",
+  "Outlook not so good.",
+  "You may rely on it.",
+  "Concentrate and ask again.",
+  "Very doubtful.",
+  "As I see it, yes.",
+  "Most likely.",
+  "Outlook good.",
+  "Yes.",
+  "Signs point to yes."
+];
+
+app.get('/magic8ball', (req, res) => {
+  const question = req.query.question || 'Will I be lucky today?';
+  const answer = magic8BallAnswers[Math.floor(Math.random() * magic8BallAnswers.length)];
+  res.json({ question, answer });
+});
+
 app.get('/dice', (req, res) => {
   const roll = req.query.roll || '1d6';
   const match = roll.match(/^(\d+)d(\d+)$/i);
