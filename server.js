@@ -238,6 +238,24 @@ app.get('/timestamp', (req, res) => {
   });
 });
 
+app.get('/fizzbuzz', (req, res) => {
+  const n = Math.min(Math.max(parseInt(req.query.n) || 15, 1), 1000);
+  const sequence = [];
+  for (let i = 1; i <= n; i++) {
+    if (i % 15 === 0) sequence.push('FizzBuzz');
+    else if (i % 3 === 0) sequence.push('Fizz');
+    else if (i % 5 === 0) sequence.push('Buzz');
+    else sequence.push(i);
+  }
+  const stats = {
+    fizz: sequence.filter(x => x === 'Fizz').length,
+    buzz: sequence.filter(x => x === 'Buzz').length,
+    fizzBuzz: sequence.filter(x => x === 'FizzBuzz').length,
+    numbers: sequence.filter(x => typeof x === 'number').length
+  };
+  res.json({ n, sequence, stats });
+});
+
 app.get('/countdown', (req, res) => {
   const now = new Date();
   let target;
