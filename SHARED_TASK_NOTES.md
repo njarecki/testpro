@@ -12,14 +12,15 @@
 - `GET /countdown?to=2025-12-31` - Countdown timer (defaults to end of day)
 - `GET /uuid?count=1` - UUID v4 generator (1-10 UUIDs)
 - `GET /color` - Random hex color generator (hex, rgb, css formats)
+- `GET /joke` - Random programming joke (setup + punchline)
 
 ## To test
 ```bash
 npm start
-# Visit http://localhost:3000/color
+# Visit http://localhost:3000/joke
 ```
 
 ## Ideas for next iteration
 - `/lorem` - Lorem ipsum text generator
-- `/joke` - Random programming joke
 - `/timestamp` - Unix timestamp converter
+- `/morse` - Text to morse code converter

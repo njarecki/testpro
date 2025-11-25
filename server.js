@@ -128,6 +128,24 @@ app.get('/color', (req, res) => {
   });
 });
 
+const programmingJokes = [
+  { setup: "Why do programmers prefer dark mode?", punchline: "Because light attracts bugs." },
+  { setup: "Why do Java developers wear glasses?", punchline: "Because they can't C#." },
+  { setup: "A SQL query walks into a bar, walks up to two tables and asks...", punchline: "Can I join you?" },
+  { setup: "Why was the JavaScript developer sad?", punchline: "Because he didn't Node how to Express himself." },
+  { setup: "How many programmers does it take to change a light bulb?", punchline: "None, that's a hardware problem." },
+  { setup: "Why do programmers hate nature?", punchline: "It has too many bugs." },
+  { setup: "What's a programmer's favorite hangout place?", punchline: "Foo Bar." },
+  { setup: "Why did the developer go broke?", punchline: "Because he used up all his cache." },
+  { setup: "What do you call a programmer from Finland?", punchline: "Nerdic." },
+  { setup: "Why do programmers always mix up Halloween and Christmas?", punchline: "Because Oct 31 == Dec 25." }
+];
+
+app.get('/joke', (req, res) => {
+  const joke = programmingJokes[Math.floor(Math.random() * programmingJokes.length)];
+  res.json(joke);
+});
+
 app.get('/countdown', (req, res) => {
   const now = new Date();
   let target;
