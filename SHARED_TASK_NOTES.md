@@ -17,16 +17,16 @@
 - `GET /roman?number=42` - Number to Roman numeral converter (1-3999)
 - `GET /lorem?words=50` - Lorem ipsum text generator (1-500 words)
 - `GET /timestamp` - Unix timestamp converter (no params=now, `?unix=1234567890` or `?date=2025-01-01`)
+- `GET /fizzbuzz?n=100` - Classic FizzBuzz sequence generator (1-1000, includes stats)
 
 ## To test
 ```bash
 npm start
-# Visit http://localhost:3000/timestamp
-# Visit http://localhost:3000/timestamp?unix=1735689600
-# Visit http://localhost:3000/timestamp?date=2025-01-01
+# Visit http://localhost:3000/fizzbuzz
+# Visit http://localhost:3000/fizzbuzz?n=100
 ```
 
 ## Ideas for next iteration
-- `/fizzbuzz?n=100` - Classic FizzBuzz sequence generator
 - `/base64?encode=text` or `?decode=dGV4dA==` - Base64 encoder/decoder
 - `/hash?text=hello&algo=md5` - Hash generator (md5, sha1, sha256)
+- `/weekday?date=2025-01-01` - Get day of week for a date
