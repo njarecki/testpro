@@ -18,14 +18,15 @@
 - `GET /lorem?words=50` - Lorem ipsum text generator (1-500 words)
 - `GET /timestamp` - Unix timestamp converter (no params=now, `?unix=1234567890` or `?date=2025-01-01`)
 - `GET /fizzbuzz?n=100` - Classic FizzBuzz sequence with stats (1-1000)
+- `GET /base64?encode=text` or `?decode=base64` - Base64 encoder/decoder
 
 ## To test
 ```bash
 npm start
-# Visit http://localhost:3000/fizzbuzz?n=30
+# Visit http://localhost:3000/base64?encode=Hello%20World
 ```
 
 ## Ideas for next iteration
-- `/base64?encode=text` or `?decode=dGV4dA==` - Base64 encoder/decoder
 - `/hash?text=hello&algo=md5` - Hash generator (md5, sha1, sha256)
 - `/emoji` - Random emoji generator
+- `/weather` - Mock weather data generator
