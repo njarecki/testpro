@@ -256,6 +256,23 @@ app.get('/fizzbuzz', (req, res) => {
   res.json({ n, sequence, stats });
 });
 
+app.get('/base64', (req, res) => {
+  const { encode, decode } = req.query;
+  if (encode) {
+    const encoded = Buffer.from(encode).toString('base64');
+    return res.json({ original: encode, encoded, operation: 'encode' });
+  }
+  if (decode) {
+    try {
+      const decoded = Buffer.from(decode, 'base64').toString('utf8');
+      return res.json({ original: decode, decoded, operation: 'decode' });
+    } catch {
+      return res.status(400).json({ error: 'Invalid base64 string' });
+    }
+  }
+  res.status(400).json({ error: 'Provide ?encode=text or ?decode=base64string' });
+});
+
 app.get('/countdown', (req, res) => {
   const now = new Date();
   let target;
