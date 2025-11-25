@@ -87,6 +87,11 @@ app.get('/dice', (req, res) => {
   });
 });
 
+app.get('/coinflip', (req, res) => {
+  const result = Math.random() < 0.5 ? 'heads' : 'tails';
+  res.json({ result, timestamp: new Date().toISOString() });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
