@@ -116,6 +116,18 @@ app.get('/uuid', (req, res) => {
   res.json(count === 1 ? { uuid: uuids[0] } : { uuids, count });
 });
 
+app.get('/color', (req, res) => {
+  const hex = Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  res.json({
+    hex: `#${hex}`,
+    rgb: { r, g, b },
+    css: `rgb(${r}, ${g}, ${b})`
+  });
+});
+
 app.get('/countdown', (req, res) => {
   const now = new Date();
   let target;
