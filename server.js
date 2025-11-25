@@ -29,6 +29,16 @@ app.get('/ping', (req, res) => {
   res.json({ status: 'ok', uptime: `${uptimeSec}s` });
 });
 
+app.get('/echo', (req, res) => {
+  const message = req.query.message || 'Hello!';
+  const reversed = message.split('').reverse().join('');
+  res.json({
+    original: message,
+    reversed: reversed,
+    length: message.length
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
