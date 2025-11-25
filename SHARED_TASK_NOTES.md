@@ -14,14 +14,15 @@
 - `GET /color` - Random hex color generator (hex, rgb, css formats)
 - `GET /joke` - Random programming joke (setup + punchline)
 - `GET /morse?text=HELLO` - Text to morse code converter (max 100 chars)
+- `GET /roman?number=42` - Number to Roman numeral converter (1-3999)
 
 ## To test
 ```bash
 npm start
-# Visit http://localhost:3000/morse?text=SOS
+# Visit http://localhost:3000/roman?number=2025
 ```
 
 ## Ideas for next iteration
 - `/lorem` - Lorem ipsum text generator
-- `/timestamp` - Unix timestamp converter
-- `/roman` - Number to roman numeral converter
+- `/timestamp` - Unix timestamp converter (bidirectional: unix <-> human date)
+- `/fizzbuzz?n=100` - Classic FizzBuzz sequence generator
