@@ -205,6 +205,39 @@ app.get('/lorem', (req, res) => {
   res.json({ text, wordCount: count });
 });
 
+app.get('/timestamp', (req, res) => {
+  const { unix, date } = req.query;
+  if (unix) {
+    const ts = parseInt(unix);
+    if (isNaN(ts)) {
+      return res.status(400).json({ error: 'Invalid unix timestamp' });
+    }
+    const d = new Date(ts * 1000);
+    return res.json({
+      unix: ts,
+      iso: d.toISOString(),
+      human: d.toUTCString()
+    });
+  }
+  if (date) {
+    const d = new Date(date);
+    if (isNaN(d.getTime())) {
+      return res.status(400).json({ error: 'Invalid date format' });
+    }
+    return res.json({
+      unix: Math.floor(d.getTime() / 1000),
+      iso: d.toISOString(),
+      human: d.toUTCString()
+    });
+  }
+  const now = new Date();
+  res.json({
+    unix: Math.floor(now.getTime() / 1000),
+    iso: now.toISOString(),
+    human: now.toUTCString()
+  });
+});
+
 app.get('/countdown', (req, res) => {
   const now = new Date();
   let target;
