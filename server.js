@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+const startTime = Date.now();
 
 const fortunes = [
   "A journey of a thousand miles begins with a single step.",
@@ -20,6 +21,12 @@ app.get('/', (req, res) => {
 app.get('/fortune', (req, res) => {
   const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
   res.json({ fortune });
+});
+
+app.get('/ping', (req, res) => {
+  const uptimeMs = Date.now() - startTime;
+  const uptimeSec = Math.floor(uptimeMs / 1000);
+  res.json({ status: 'ok', uptime: `${uptimeSec}s` });
 });
 
 app.listen(PORT, () => {

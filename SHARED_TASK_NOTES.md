@@ -1,17 +1,15 @@
 # Shared Task Notes
 
-## What was added
-- `/fortune` endpoint that returns a random developer-themed fortune cookie message as JSON
+## Current endpoints
+- `GET /` - Hello World
+- `GET /fortune` - Random developer fortune
+- `GET /ping` - Health check with uptime
 
 ## To test
 ```bash
 npm start
-# Then visit http://localhost:3000/fortune
+# Visit http://localhost:3000/ping
 ```
 
 ## Project status
-This simple webserver now has two endpoints:
-- `GET /` - Hello World
-- `GET /fortune` - Random fortune
-
-The feature is complete and ready for use.
+Simple webserver is complete with 3 endpoints. Ready for use.
