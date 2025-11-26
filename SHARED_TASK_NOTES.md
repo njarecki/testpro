@@ -19,13 +19,17 @@
 - `GET /timestamp` - Unix timestamp converter (no params=now, `?unix=1234567890` or `?date=2025-01-01`)
 - `GET /fizzbuzz?n=100` - Classic FizzBuzz sequence with stats (1-1000)
 - `GET /base64?encode=text` or `?decode=dGV4dA==` - Base64 encoder/decoder
+- `GET /emoji` - Random emoji generator (optional: `?count=5`, `?category=animals`)
 
 ## To test
 ```bash
 npm start
-# Visit http://localhost:3000/base64?encode=hello
+# Visit http://localhost:3000/emoji
+# Visit http://localhost:3000/emoji?count=5
+# Visit http://localhost:3000/emoji?category=food
 ```
 
 ## Ideas for next iteration
 - `/hash?text=hello&algo=md5` - Hash generator (md5, sha1, sha256)
-- `/emoji` - Random emoji generator
+- `/weather` - Fake weather generator
+- `/ascii?text=hello` - ASCII art text generator
