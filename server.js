@@ -299,6 +299,49 @@ app.get('/base64', (req, res) => {
   res.status(400).json({ error: 'Provide ?encode=text or ?decode=base64string' });
 });
 
+const emojis = [
+  { emoji: '😀', name: 'grinning face', category: 'smileys' },
+  { emoji: '😎', name: 'smiling face with sunglasses', category: 'smileys' },
+  { emoji: '🚀', name: 'rocket', category: 'travel' },
+  { emoji: '💻', name: 'laptop', category: 'objects' },
+  { emoji: '🔥', name: 'fire', category: 'nature' },
+  { emoji: '⭐', name: 'star', category: 'nature' },
+  { emoji: '🎉', name: 'party popper', category: 'activities' },
+  { emoji: '❤️', name: 'red heart', category: 'symbols' },
+  { emoji: '🤖', name: 'robot', category: 'smileys' },
+  { emoji: '🦄', name: 'unicorn', category: 'animals' },
+  { emoji: '🍕', name: 'pizza', category: 'food' },
+  { emoji: '🌈', name: 'rainbow', category: 'nature' },
+  { emoji: '💡', name: 'light bulb', category: 'objects' },
+  { emoji: '🎸', name: 'guitar', category: 'objects' },
+  { emoji: '🐱', name: 'cat face', category: 'animals' },
+  { emoji: '🐶', name: 'dog face', category: 'animals' },
+  { emoji: '🍺', name: 'beer mug', category: 'food' },
+  { emoji: '☕', name: 'hot beverage', category: 'food' },
+  { emoji: '🎮', name: 'video game', category: 'activities' },
+  { emoji: '✨', name: 'sparkles', category: 'nature' }
+];
+
+app.get('/emoji', (req, res) => {
+  const count = Math.min(Math.max(parseInt(req.query.count) || 1, 1), 10);
+  const category = req.query.category;
+  let pool = emojis;
+  if (category) {
+    pool = emojis.filter(e => e.category === category);
+    if (pool.length === 0) {
+      return res.status(400).json({
+        error: 'Unknown category',
+        available: [...new Set(emojis.map(e => e.category))]
+      });
+    }
+  }
+  const result = [];
+  for (let i = 0; i < count; i++) {
+    result.push(pool[Math.floor(Math.random() * pool.length)]);
+  }
+  res.json(count === 1 ? result[0] : { emojis: result, count });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
